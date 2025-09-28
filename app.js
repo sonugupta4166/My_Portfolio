@@ -34,3 +34,67 @@ closeIcon.addEventListener("click", function(){
     sideBar.classList.add("close-sidebar");
     
 })
+// ===== Sidebar Menu Toggle =====
+const menuIcon = document.querySelector('.menu-icon i');
+const sidebar = document.querySelector('.sidebar');
+const closeIcon = document.querySelector('.close-icon i');
+
+// Open Sidebar
+menuIcon.addEventListener('click', () => {
+  sidebar.classList.add('active');
+});
+
+// Close Sidebar
+closeIcon.addEventListener('click', () => {
+  sidebar.classList.remove('active');
+});
+
+// Close sidebar when clicking on any link
+document.querySelectorAll('.sidebar ul li a').forEach(link => {
+  link.addEventListener('click', () => {
+    sidebar.classList.remove('active');
+  });
+});
+
+// ===== Auto Blur Effect for Sections =====
+const autoBlurElements = document.querySelectorAll('.autoBlur');
+
+window.addEventListener('scroll', () => {
+  autoBlurElements.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      el.style.filter = "blur(0px)";
+      el.style.opacity = "1";
+      el.style.transition = "all 1s ease-in-out";
+    } else {
+      el.style.filter = "blur(5px)";
+      el.style.opacity = "0.5";
+    }
+  });
+});
+
+// ===== Auto Display Animation =====
+const autoDisplayElements = document.querySelectorAll('.autoDisplay');
+
+window.addEventListener('scroll', () => {
+  autoDisplayElements.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 50) {
+      el.style.transform = "translateY(0)";
+      el.style.opacity = "1";
+      el.style.transition = "all 1s ease-in-out";
+    } else {
+      el.style.transform = "translateY(50px)";
+      el.style.opacity = "0";
+    }
+  });
+});
+
+// ===== Contact Form Validation (Optional) =====
+const contactBtn = document.querySelector('.contact-box button');
+if (contactBtn) {
+  contactBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    alert("🚀 Thank you for reaching out! I’ll get back to you soon.");
+  });
+}
